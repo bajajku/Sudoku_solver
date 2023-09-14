@@ -53,3 +53,21 @@ def isValid(board, number, pos):
     
     return True
 
+def solve(board):
+    # BackTracking Algorithm used
+    find = find_empty(board)
+    if not find:
+        return True
+    else:
+        row, col = find
+        
+    for i in range(1,10):
+        if isValid(board, i, (row, col)):
+            board[row][col] = i
+            
+            if solve(board):
+                return True
+            
+            board[row][col] = 0
+    return False
+
