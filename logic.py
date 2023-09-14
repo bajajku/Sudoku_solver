@@ -20,3 +20,12 @@ def print_board(board):
             print(board[i][j])
         else:
             print(str(board[i][j]) + " ", end ="")
+
+# function to find empty values in board which this program will solve
+def find_empty(board):
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == 0:
+                return (i,j)
+    return None
+
