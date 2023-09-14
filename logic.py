@@ -1,3 +1,7 @@
+import sys
+import time
+
+
 BOARD = [[7,8,0,4,0,0,1,2,0],
          [6,0,0,0,7,5,0,0,9],
          [0,0,0,6,0,1,0,7,7],
@@ -8,18 +12,18 @@ BOARD = [[7,8,0,4,0,0,1,2,0],
          [1,2,0,0,0,7,4,0,0],
          [0,4,9,2,0,6,0,0,7]]
 
-def print_board(board):
-    for i in range(len(board)):
+def print_board(brd):
+    for i in range(len(brd)):
         if i % 3 == 0 and i != 0:
             print("- - - - - - - - - - - - ")
-    for j in range(len(board[0])):
-        if j % 3 == 0 and j != 0 :
-            print("| ", end="")
+        for j in range(len(brd[0])):
+            if j % 3 == 0 and j != 0 :
+                print("| ", end="")
 
-        if j == 8:
-            print(board[i][j])
-        else:
-            print(str(board[i][j]) + " ", end ="")
+            if j == 8:
+                print(brd[i][j])
+            else:
+                print(str(brd[i][j]) + " ", end ="")
 
 # function to find empty values in board which this program will solve
 def find_empty(board):
@@ -70,4 +74,28 @@ def solve(board):
             
             board[row][col] = 0
     return False
+
+def main():
+    print_board(BOARD)
+    print()
+    timer = 0
+    loading = "Loading Solution: [-----]"
+    backtrack = '\b'*len(loading)
+
+    while timer < 6:
+        sys.stdout.write(backtrack + loading)
+        sys.stdout.flush()
+        loading = loading.replace("-","=",1)
+        time.sleep(1)
+        timer += 1
+    time.sleep(1)
+    sys.stdout.write(backtrack)
+    print(loading+" Complete!")
+
+    solve(BOARD)
+    print()
+    print_board(BOARD)
+
+main()
+
 
